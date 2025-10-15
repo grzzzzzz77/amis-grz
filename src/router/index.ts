@@ -27,26 +27,16 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: "setting",
         name: "setting",
-        meta: { breadcrumb: "成本设置", icon: BottomLeft },
+        meta: { breadcrumb: "A", icon: BottomLeft },
         children: [
           {
-            path: "shipping",
-            name: "shipping",
-            component: () => import("../views/setting/shipping/shipping.vue"),
-            meta: { breadcrumb: "运费信息", icon: Location },
+            path: "amis",
+            name: "amis",
+            component: () => import("../views/setting/amis/amis.vue"),
+            meta: { breadcrumb: "amis页面", icon: Location },
           },
           // 添加其他信息导入的子菜单路由...
         ],
-      },
-      {
-        path: "RoleView",
-        name: "RoleView",
-        component: () => import("../views/Role/role.vue"),
-        meta: {
-          requiresAuth: false,
-          breadcrumb: "用户管理",
-          icon: Setting
-        },
       },
       {
         path: "/:pathMatch(.*)",

@@ -9,6 +9,8 @@ import { Plugin as importToCDN } from "vite-plugin-cdn-import";
 import DefineOptions from 'unplugin-vue-define-options/vite'
 //mock
 import { viteMockServe } from "vite-plugin-mock";
+import legacy from "@vitejs/plugin-legacy";
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
   resolve: {
@@ -21,6 +23,18 @@ export default defineConfig({
   plugins: [
     vue(),
     DefineOptions(), // 添加这一行
+    viteStaticCopy({
+      targets: [
+        {
+          src: path.resolve(__dirname, './node_modules/amis/sdk') + '/[!.]*',
+          dest: 'amis/sdk'
+        }
+      ]
+    }),
+    legacy({
+      targets: ["ie >= 11"],
+      additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
+    }),
     //该插件可以去压缩代码gzip(需要服务器支持gzip,要很大的文件)
     viteCompression(),
     // 该插件可以去引入cdn资源
@@ -90,12 +104,7 @@ export default defineConfig({
         //自动管理 补全浏览器前缀
         autoprefixer({
           overrideBrowserslist: [
-            "Android 4.1",
-            "iOS 7.1",
-            "Chrome > 31",
-            "ff > 31",
-            "ie >= 8",
-            "last 10 versions",
+           "last 2 versions", "not dead", "not ie <= 11", "not op_mini all"
           ],
           //启用了对CSS Grid布局的支持
           grid: true,
