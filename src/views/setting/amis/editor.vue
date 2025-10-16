@@ -1,5 +1,5 @@
 <template>
-  <div style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:9999">
+  <div style="height:100vh;width: 100vw;">
     <AmisEditor id="editorName"
       theme="cxd"
       className="test-amis-editor"
@@ -38,7 +38,7 @@ const editorChanged = (value) => {
 
 
 <style lang="less" scoped >
-:deep(.test-amis-editor) {
+::v-deep .test-amis-editor {
   height: 100% !important;
   overflow-y: auto;
 }
