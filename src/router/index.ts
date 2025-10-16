@@ -48,6 +48,10 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: "/ed",
+    component: () => import("../views/setting/amis/editor.vue"),
+  },
   // 添加其他路由配置...
 ];
 

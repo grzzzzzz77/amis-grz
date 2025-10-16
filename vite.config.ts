@@ -18,6 +18,8 @@ export default defineConfig({
       //别名
       "@": path.resolve(__dirname, "./src"),
       "@assets": path.resolve(__dirname, "./src/assets"),
+      // 修复 i18n-runtime 的错误入口，指向存在的 CommonJS 文件
+      "i18n-runtime": path.resolve(__dirname, "./node_modules/i18n-runtime/lib/index.js"),
     },
   },
   plugins: [
