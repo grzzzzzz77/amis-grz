@@ -159,9 +159,10 @@ export default defineConfig({
     host: "0.0.0.0", // IP配置，支持从IP启动
     proxy: {
       "/api": {
-        target: "http://127.0.0.1:8080/", //实际请求地址
+        target: "https://www.reboots.top", //实际请求地址
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
+        secure: false, // 如果目标是 https 且使用了自签名证书，设置为 false
+        // 不重写路径，直接转发 /api 到目标服务器
       },
     },
   },

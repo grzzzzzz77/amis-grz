@@ -1,5 +1,6 @@
 <template>
   <div class="info">
+    <el-button class="editor" @click="goEditor" v-if="isAmis" >编辑器</el-button>
     <el-dropdown>
       <span class="user-info">
         <el-avatar
@@ -47,7 +48,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import type { RouteLocationMatched } from "vue-router";
 import { useMenuStore } from "@/store/menu";
@@ -75,6 +76,10 @@ watch(
   { immediate: true }
 );
 
+const isAmis = computed(()=>{
+  return route.meta.isAmis
+})
+
 const handleCollapse = () => {
   collapseMenu();
 };
@@ -97,6 +102,15 @@ const handleClose = (tag: any, index: number) => {
   // 保存到 sessionStorage
   sessionStorage.setItem("tagList", JSON.stringify(menuStore.state.tagList));
 };
+
+
+const goEditor = ()=>{
+  const path = route.path
+  router.push({
+    path:"/ed",
+    query:{path}
+  })
+}
 </script>
 
 <style scoped lang="less">
@@ -104,6 +118,11 @@ const handleClose = (tag: any, index: number) => {
   position: absolute;
   top: 15px;
   right: 20px;
+
+  .editor{
+    margin-bottom: 26px;
+    margin-right: 10px;
+  }
 }
 .tag {
   margin-top: 14px;

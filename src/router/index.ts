@@ -5,6 +5,7 @@ import {
   BottomLeft,
   Location,
 } from "@element-plus/icons-vue";
+import { tryReference } from "mobx-state-tree";
 // 导入其他路由组件...
 
 // 定义路由配置数组
@@ -33,7 +34,13 @@ const routes: Array<RouteRecordRaw> = [
             path: "amis",
             name: "amis",
             component: () => import("../views/setting/amis/amis.vue"),
-            meta: { breadcrumb: "amis页面", icon: Location },
+            meta: { breadcrumb: "amis页面", icon: Location, isAmis:true },
+          },
+          {
+            path: "userTag",
+            name: "userTag",
+            component: () => import("../views/setting/amis/userTag.vue"),
+            meta: { breadcrumb: "用户标签", icon: Location, isAmis:true },
           },
           // 添加其他信息导入的子菜单路由...
         ],
